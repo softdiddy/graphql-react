@@ -1,5 +1,5 @@
 const graphql=require('graphql');
-const {GraphQLObjectType,GraphQLString} =graphql;
+const {GraphQLObjectType,GraphQLString,GraphQLSchema} =graphql;
 const _=require('lodash');
 
 //dummy data
@@ -24,9 +24,9 @@ const RootQuery=new GraphQLObjectType({
         book:{
             type:BookType,
             args:{id:{type:GraphQLString}},
-            resolve(pparent,args){
+            resolve(parent,args){
                 //code to get data from db or other source 
-                return_find(books,{id:args.id});
+                return _.find(books,{id:args.id});
             }
         }
     }
